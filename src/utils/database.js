@@ -1,8 +1,16 @@
 const { QuickDB } = require('quick.db');
 const path = require('path');
+const fs = require('fs');
+
+// ធានាថា folder data/ មានជានិច្ច
+const dataDir = path.join(__dirname, '../../data');
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+    console.log('📁 បានបង្កើត folder data/');
+}
 
 const db = new QuickDB({ 
-    filePath: path.join(__dirname, '../../data/database.sqlite')
+    filePath: path.join(dataDir, 'database.sqlite')
 });
 
 module.exports = {
